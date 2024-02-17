@@ -1,12 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    public GameObject Timeline;
-    private TimelinePreferences timeline;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +13,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-    }
-
-    public void StartGame()
-    {
-        Timeline.SetActive(true);
+        
     }
 }
