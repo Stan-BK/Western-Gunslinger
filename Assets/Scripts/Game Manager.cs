@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 {
     public GameObject Timeline;
     private TimelinePreferences timeline;
+
+    public UIManager UIManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,5 +23,10 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         Timeline.SetActive(true);
+    }
+
+    public void GameLoaded()
+    {
+        UIManager.ShowGamingUI();
     }
 }

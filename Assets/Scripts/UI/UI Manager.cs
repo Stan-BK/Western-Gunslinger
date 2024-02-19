@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject Gaming;
+    public GameObject Menu;
+
+    public void ShowGamingUI()
     {
-        
+        Menu.SetActive(false);
+        Gaming.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ShowMenuUI()
     {
-        
+        Menu.SetActive(true);
+        Gaming.SetActive(false);
     }
 }
