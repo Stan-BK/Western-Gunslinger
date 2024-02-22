@@ -12,15 +12,15 @@ public class UIManager : MonoBehaviour
     public RoundStartStopSO RoundStartStopSo;
     public GameStartStopSO GameStartStopSO;
 
-    private List<GameObject> GamingOptionUI;
-    public Dictionary<OperatorOption, GameObject> GamingOptionUIDic;
+    [SerializeField]private List<GameObject> GamingOptionUI;
+    private Dictionary<OperatorOption, GameObject> GamingOptionUIDic = new Dictionary<OperatorOption, GameObject>();
 
     private void Awake()
     {
         foreach (var ui in GamingOptionUI)
         {
             OperatorOption optionType = ui.GetComponent<OperationUI>().GetOperationType();
-            GamingOptionUIDic[optionType] = ui;
+            GamingOptionUIDic.Add(optionType, ui);
         }
     }
 
@@ -65,7 +65,9 @@ public class UIManager : MonoBehaviour
         foreach (var Operator in Enum.GetNames(typeof(OperatorOption)))
         {
             var key = Enum.Parse<OperatorOption>(Operator);
-            GamingOptionUIDic[key].SetActive(Player.AvailableOptions[key]);
+            GameObject ui;
+            GamingOptionUIDic.TryGetValue(key, out ui);
+            ui?.SetActive(Player.AvailableOptions[key]);
         }
     }
 }

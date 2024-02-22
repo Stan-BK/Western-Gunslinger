@@ -902,8 +902,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 647.2319, y: -1423.91}
-  m_SizeDelta: {x: 1294.4637, y: 2847.82}
+  m_AnchoredPosition: {x: 4.7209473, y: -1423.91}
+  m_SizeDelta: {x: 9.441895, y: 2847.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &422837576
 GameObject:
@@ -939,6 +939,10 @@ MonoBehaviour:
   Player: {fileID: 218476524}
   RoundStartStopSo: {fileID: 11400000, guid: 57740ee1df4de3f43b62155291d71664, type: 2}
   GameStartStopSO: {fileID: 11400000, guid: b639a3d005b593942a1ea9f767cdef11, type: 2}
+  GamingOptionUI:
+  - {fileID: 915241153}
+  - {fileID: 1214755431}
+  - {fileID: 1662814421}
 --- !u!4 &422837578
 Transform:
   m_ObjectHideFlags: 0
@@ -1025,7 +1029,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 795915529}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -1255,7 +1259,7 @@ GameObject:
   - component: {fileID: 770687865}
   - component: {fileID: 770687866}
   m_Layer: 5
-  m_Name: Options
+  m_Name: Options Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1918,7 +1922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c71792ee5a89f7d41bb8090f017f7a6f, type: 2}
   m_sharedMaterial: {fileID: 5461014724373629414, guid: c71792ee5a89f7d41bb8090f017f7a6f,
@@ -2732,8 +2736,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timeline: {fileID: 104621162}
   Player: {fileID: 218476524}
-  RoundStartStopSo: {fileID: 0}
-  GameStartStopSO: {fileID: 0}
+  RoundStartStopSo: {fileID: 11400000, guid: 57740ee1df4de3f43b62155291d71664, type: 2}
+  GameStartStopSO: {fileID: 11400000, guid: b639a3d005b593942a1ea9f767cdef11, type: 2}
   RoundCountTime: 3
 --- !u!1 &1123703751
 GameObject:
