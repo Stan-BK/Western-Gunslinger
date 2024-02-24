@@ -567,6 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b83f84411c4d7187781694bacb4585, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Gun: {fileID: 8875419895515618019}
 --- !u!4 &218476525
 Transform:
   m_ObjectHideFlags: 0
@@ -1765,6 +1766,7 @@ GameObject:
   - component: {fileID: 915241161}
   - component: {fileID: 915241160}
   - component: {fileID: 915241159}
+  - component: {fileID: 915241163}
   m_Layer: 0
   m_Name: Shoot
   m_TagString: Untagged
@@ -1951,6 +1953,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 915241163}
+        m_TargetAssemblyTypeName: ClickHandler, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &915241162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2041,6 +2055,34 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &915241163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915241153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c7a8e6539cb7545810681116402c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 218476524}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Operator
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Option: 0
 --- !u!1 &918273524
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,6 +2646,7 @@ GameObject:
   - component: {fileID: 1214755439}
   - component: {fileID: 1214755438}
   - component: {fileID: 1214755437}
+  - component: {fileID: 1214755441}
   m_Layer: 0
   m_Name: Defend
   m_TagString: Untagged
@@ -2790,6 +2833,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1214755441}
+        m_TargetAssemblyTypeName: ClickHandler, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1214755440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2880,6 +2935,34 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1214755441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214755431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c7a8e6539cb7545810681116402c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 218476524}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Operator
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Option: 1
 --- !u!1 &1276117891
 GameObject:
   m_ObjectHideFlags: 0
@@ -2996,6 +3079,7 @@ GameObject:
   - component: {fileID: 1662814429}
   - component: {fileID: 1662814428}
   - component: {fileID: 1662814427}
+  - component: {fileID: 1662814431}
   m_Layer: 0
   m_Name: Load
   m_TagString: Untagged
@@ -3182,6 +3266,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1662814431}
+        m_TargetAssemblyTypeName: ClickHandler, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1662814430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3272,6 +3368,34 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1662814431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662814421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c7a8e6539cb7545810681116402c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClickEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 218476524}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Operator
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Option: 2
 --- !u!1 &1878753949
 GameObject:
   m_ObjectHideFlags: 0
@@ -3499,6 +3623,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1096883803861172749, guid: 19766c95cd4219a4da761f55d688a51e,
+        type: 3}
+      propertyPath: GunAnimation
+      value: 
+      objectReference: {fileID: 8875419895515618020}
     - target: {fileID: 1575362931412228775, guid: 19766c95cd4219a4da761f55d688a51e,
         type: 3}
       propertyPath: m_Layer
@@ -3796,6 +3925,24 @@ PrefabInstance:
 --- !u!4 &8875419895515618018 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4316066884855031536, guid: 19766c95cd4219a4da761f55d688a51e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8875419895515618017}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8875419895515618019 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1096883803861172749, guid: 19766c95cd4219a4da761f55d688a51e,
+    type: 3}
+  m_PrefabInstance: {fileID: 8875419895515618017}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 854058453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b3174fb9da842442a23cd6ae9c86aa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &8875419895515618020 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6021354883267981019, guid: 19766c95cd4219a4da761f55d688a51e,
     type: 3}
   m_PrefabInstance: {fileID: 8875419895515618017}
   m_PrefabAsset: {fileID: 0}

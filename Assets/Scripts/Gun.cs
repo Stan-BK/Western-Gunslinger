@@ -6,49 +6,23 @@ using UnityEngine.InputSystem;
 
 public class Gun : MonoBehaviour
 {
-    public bool isFire;
+    public bool isShoot;
     public ParticleSystem particleSystem;
     public Animator GunAnimation;
-    public PlayerInputControl InputControl;
-
-    #region 生命周期
-
-    // Start is called before the first frame update
-    private void Awake()
-    {
-        InputControl = new PlayerInputControl();
-
-        InputControl.Player.Load.started += OnLoadBullet;
-        InputControl.Player.Defend.started += OnDefend;
-        InputControl.Player.Fire.started += OnFire;
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (isFire)
+        if (isShoot)
         {
-            isFire = false;
+            isShoot = false;
             FireParticle();
         }
     }
 
-    private void OnEnable()
+    void Shoot()
     {
-        InputControl.Enable();
-    }
-
-    private void OnDisable()
-    {
-        InputControl.Disable();
-    }
-
-    #endregion
- 
-
-    void Fire()
-    {
-        GunAnimation.SetTrigger("Fire");
+        GunAnimation.SetTrigger("Shoot");
     }
 
     void LoadBullet()
@@ -63,16 +37,14 @@ public class Gun : MonoBehaviour
 
     #region 用户行为
     
-    private void OnLoadBullet(InputAction.CallbackContext obj)
+    public void OnLoadBullet()
     {
         LoadBullet();
     } 
-    private void OnDefend(InputAction.CallbackContext obj)
+    
+    public void OnShoot()
     {
-    } 
-    private void OnFire(InputAction.CallbackContext obj)
-    {
-        Fire();
+        Shoot();
     }
     
     #endregion

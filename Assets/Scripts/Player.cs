@@ -1,5 +1,55 @@
+using UnityEngine.InputSystem;
+
 public class Player: PlayerOption
 {
+    public PlayerInputControl InputControl;
+    public Gun Gun;
+
+    #region 生命周期函数
+
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        InputControl = new PlayerInputControl();
+
+        InputControl.Player.Load.started += OnLoadBullet;
+        InputControl.Player.Defend.started += OnDefend;
+        InputControl.Player.Fire.started += OnShoot;
+    }
+
+
+    private void OnEnable()
+    {
+        InputControl.Enable();
+    }
+
+    private void OnDisable()
+    {
+        InputControl.Disable();
+    }
+
+    #endregion
+
+    #region 键盘响应函数
+    
+    private void OnLoadBullet(InputAction.CallbackContext obj)
+    {
+        Operator(OperatorOption.LOAD);
+    } 
+
+    private void OnDefend(InputAction.CallbackContext obj)
+    {
+        Operator(OperatorOption.LOAD);
+    } 
+    
+    private void OnShoot(InputAction.CallbackContext obj)
+    {
+        Operator(OperatorOption.SHOOT);
+    }
+    
+    #endregion
+    
     public override void Operator(OperatorOption option)
     {
         switch (option)
@@ -36,6 +86,7 @@ public class Player: PlayerOption
 
     protected override void Load()
     {
+        Gun.OnLoadBullet();
         SwitchStatus(OperatorOption.LOAD);
         loadedBullets += 1;
     }

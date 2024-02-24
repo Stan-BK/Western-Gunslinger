@@ -16,7 +16,7 @@ public abstract class PlayerOption: MonoBehaviour
     protected abstract void Defend();
     protected abstract void Load();
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Init();
     }
