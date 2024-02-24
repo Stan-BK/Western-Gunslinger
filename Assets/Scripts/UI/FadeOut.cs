@@ -16,6 +16,7 @@ public class FadeOut : MonoBehaviour
 
     public void Fadeout(bool isNeedParticle)
     {
+        if (!gameObject.activeSelf) return;
         animator.enabled = true;
         if (isNeedParticle)
         {
