@@ -12,20 +12,50 @@ public class GameManager : MonoBehaviour
     public Player Player;
     public RoundStartStopSO RoundStartStopSo;
     public GameStartStopSO GameStartStopSO;
+    public AnimationEndedSO AnimationEndedSO;
+    public Countdown Countdown;
     public float RoundCountTime;
     private float roundTimer = 0;
     private bool isPlaying = false;
     private bool isFirstPlay = true;
-    
-    private void Update()
+    private bool isTimeOver = false;
+
+    #region 生命周期函数
+
+    private void Awake()
     {
-        roundTimer += Time.deltaTime;
-        if (roundTimer >= RoundCountTime)
-        {
-            roundTimer = 0;
-            RoundSettle();
-        }
+        Countdown.RoundCountTime = RoundCountTime;
     }
+
+    private void OnEnable()
+    {
+        AnimationEndedSO.OnAnimationEnded += OnAnimationEnded;
+        Countdown.TimeOver += RoundTimeOver;
+        Player.OnOperationSelected += OnPlayerOperationSelected;
+    }
+
+    private void OnDisable()
+    {
+        AnimationEndedSO.OnAnimationEnded -= OnAnimationEnded;
+        Countdown.TimeOver -= RoundTimeOver;
+        Player.OnOperationSelected -= OnPlayerOperationSelected;
+    }
+    #endregion
+
+    #region 事件函数
+
+    // 结算动画结束
+    private void OnAnimationEnded()
+    {
+        NewRound(); 
+    }
+
+    private void OnPlayerOperationSelected()
+    {
+        RoundTimeOver();
+    }
+
+    #endregion
 
     public void StartGame()
     {
@@ -47,13 +77,24 @@ public class GameManager : MonoBehaviour
     public void NewRound()
     {
         RoundStartStopSo.RoundStartStop(true);
+        isTimeOver = false;
+        isPlaying = true;
+    }
+
+    private void RoundTimeOver()
+    {
+        // 防止用户在倒计时前操作从而触发两次行为
+        if (isTimeOver) return;
+        isTimeOver = true;
+        RoundSettle();
     }
     
     public void RoundSettle()
     {
         Player.GetCurrentStatus();
         RoundStartStopSo.RoundStartStop(false);
-        
-        
+        isPlaying = false;
+
+        // NewRound();
     }
 }

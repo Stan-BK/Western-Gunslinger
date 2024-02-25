@@ -1,15 +1,21 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class Player: PlayerOption
+public class Player: Instance
 {
     public PlayerInputControl InputControl;
     public Gun Gun;
+    public UnityAction OnOperationSelected;
+
+    public Dictionary<OperatorOption, bool> AvailableOptions = new Dictionary<OperatorOption, bool>();
 
     #region 生命周期函数
 
-    protected override void Awake()
+    void Awake()
     {
-        base.Awake();
+        Init();
         
         InputControl = new PlayerInputControl();
 
@@ -17,7 +23,6 @@ public class Player: PlayerOption
         InputControl.Player.Defend.started += OnDefend;
         InputControl.Player.Fire.started += OnShoot;
     }
-
 
     private void OnEnable()
     {
@@ -49,7 +54,9 @@ public class Player: PlayerOption
     }
     
     #endregion
-    
+
+    #region 行为函数
+
     public override void Operator(OperatorOption option)
     {
         switch (option)
@@ -58,10 +65,13 @@ public class Player: PlayerOption
             case OperatorOption.DEFEND: Defend(); break;
             case OperatorOption.SHOOT: Shoot(); break;
         }        
+        
+        OnOperationSelected?.Invoke();
     }
 
     protected override void Shoot()
     {
+        Gun.Operator(OperatorOption.SHOOT);
         SwitchStatus(OperatorOption.SHOOT);
         
         if (loadedBullets == ultimateBulletCount)
@@ -86,13 +96,38 @@ public class Player: PlayerOption
 
     protected override void Load()
     {
-        Gun.OnLoadBullet();
+        Gun.Operator(OperatorOption.LOAD);
         SwitchStatus(OperatorOption.LOAD);
         loadedBullets += 1;
     }
 
-    void SwitchStatus(OperatorOption option)
+
+    #endregion
+
+    #region 状态相关函数
+
+    public void Init()
+    {
+        loadedBullets = 0;
+        isDead = false;
+        foreach (var Operator in Enum.GetNames(typeof(OperatorOption)))
+        {
+            AvailableOptions.Add(Enum.Parse<OperatorOption>(Operator), true);
+        }
+
+        AvailableOptions[OperatorOption.SHOOT] = false;
+    }
+    
+    public OperatorOption GetCurrentStatus()
+    {
+        return currentStatus;
+    }
+
+    protected override void SwitchStatus(OperatorOption option)
     {
         currentStatus = option;
     }
+
+    #endregion
+    
 }
