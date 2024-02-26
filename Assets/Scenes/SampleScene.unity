@@ -562,8 +562,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 875020665}
-  - {fileID: 1485697457}
-  - {fileID: 770687865}
+  - {fileID: 2053161084}
   m_Father: {fileID: 476408667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -600,11 +599,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4b8c74df9d3a734faa76a0d31611e96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Gaming: {fileID: 399557170}
-  Menu: {fileID: 1276117891}
-  Player: {fileID: 218476524}
-  RoundStartStopSo: {fileID: 11400000, guid: 57740ee1df4de3f43b62155291d71664, type: 2}
+  GamingUI: {fileID: 399557170}
+  MenuUI: {fileID: 1276117891}
+  RoundUI: {fileID: 2053161083}
+  RoundStartStopSO: {fileID: 11400000, guid: 57740ee1df4de3f43b62155291d71664, type: 2}
   GameStartStopSO: {fileID: 11400000, guid: b639a3d005b593942a1ea9f767cdef11, type: 2}
+  UIAnimationEndedSO: {fileID: 11400000, guid: 8822b6de0d0653649941757faeff6cc9, type: 2}
+  isUIAnimationEnded: 0
   GamingOptionUI:
   - {fileID: 915241153}
   - {fileID: 1214755431}
@@ -938,7 +939,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770687864}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -946,7 +947,7 @@ RectTransform:
   - {fileID: 915241154}
   - {fileID: 1214755432}
   - {fileID: 1662814422}
-  m_Father: {fileID: 399557171}
+  m_Father: {fileID: 2053161084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1806,6 +1807,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1485697461}
+        m_TargetAssemblyTypeName: FadeOut, Assembly-CSharp
+        m_MethodName: Fadeout
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &915241162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2073,7 +2086,7 @@ Animator:
   m_GameObject: {fileID: 918273524}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 435394437246d874abcb6ab7a978cb2b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 03acbebeec253864d9be986c06aaf374, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2688,6 +2701,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1485697461}
+        m_TargetAssemblyTypeName: FadeOut, Assembly-CSharp
+        m_MethodName: Fadeout
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1214755440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2918,6 +2943,8 @@ GameObject:
   - component: {fileID: 1485697459}
   - component: {fileID: 1485697458}
   - component: {fileID: 1485697460}
+  - component: {fileID: 1485697461}
+  - component: {fileID: 1485697462}
   m_Layer: 5
   m_Name: Countdown
   m_TagString: Untagged
@@ -2932,12 +2959,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485697456}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.00047775658}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 399557171}
+  m_Father: {fileID: 2053161084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2974,7 +3001,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4280007565
   m_fontColor: {r: 0.55101013, g: 0.73333335, b: 0.10588236, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -3058,6 +3085,39 @@ MonoBehaviour:
   RoundCountTime: 0
   RoundStartStopSO: {fileID: 11400000, guid: 57740ee1df4de3f43b62155291d71664, type: 2}
   TextMeshPro: {fileID: 1485697458}
+--- !u!114 &1485697461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485697456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974002cd45ba6fa448ae54059f9c913b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &1485697462
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485697456}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 03acbebeec253864d9be986c06aaf374, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1662814421
 GameObject:
   m_ObjectHideFlags: 0
@@ -3265,6 +3325,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: ClickHandler, Assembly-CSharp
         m_MethodName: OnClick
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1485697461}
+        m_TargetAssemblyTypeName: FadeOut, Assembly-CSharp
+        m_MethodName: Fadeout
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3693,6 +3765,43 @@ Transform:
   m_Children: []
   m_Father: {fileID: 951932252}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2053161083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2053161084}
+  m_Layer: 5
+  m_Name: RoundPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2053161084
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2053161083}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1485697457}
+  - {fileID: 770687865}
+  m_Father: {fileID: 399557171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &8875419895515618017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3758,6 +3867,12 @@ PrefabInstance:
       propertyPath: RoundStartStopSO
       value: 
       objectReference: {fileID: 11400000, guid: 57740ee1df4de3f43b62155291d71664,
+        type: 2}
+    - target: {fileID: 1096883803861172749, guid: 19766c95cd4219a4da761f55d688a51e,
+        type: 3}
+      propertyPath: UIAnimationEndedSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 8822b6de0d0653649941757faeff6cc9,
         type: 2}
     - target: {fileID: 1575362931412228775, guid: 19766c95cd4219a4da761f55d688a51e,
         type: 3}

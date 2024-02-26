@@ -11,13 +11,19 @@ public class FadeOut : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        animator.enabled = false;
+    }
+
+    private void OnEnable()
+    {
+        animator.enabled = true;
+        if (Particle)
+            Particle.GetComponent<ParticleSystem>()?.Stop();
     }
 
     public void Fadeout(bool isNeedParticle)
     {
         if (!gameObject.activeSelf) return;
-        animator.enabled = true;
+        animator.SetTrigger("FadeOut");
         if (isNeedParticle)
         {
             if (Particle == null)

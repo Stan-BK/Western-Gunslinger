@@ -5,7 +5,7 @@ using UnityEditor.Timeline.Actions;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public GameObject Timeline;
     private TimelinePreferences timeline;
@@ -13,17 +13,24 @@ public class GameManager : MonoBehaviour
     public RoundStartStopSO RoundStartStopSo;
     public GameStartStopSO GameStartStopSO;
     public AnimationEndedSO AnimationEndedSO;
+    
     public Countdown Countdown;
     public float RoundCountTime;
     private float roundTimer = 0;
-    private bool isPlaying = false;
+    private bool _isPlaying = false;
     private bool isFirstPlay = true;
     private bool isTimeOver = false;
 
+    public bool isPlaying
+    {
+        get => _isPlaying;
+    }
+
     #region 生命周期函数
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Countdown.RoundCountTime = RoundCountTime;
     }
 
@@ -60,8 +67,11 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         if (isFirstPlay)
+        {
+            isFirstPlay = false;
             // 首次进入游戏有镜头过渡动画，依靠时间线完成后激活标识来开启游戏
             Timeline.SetActive(true);
+        }
         else
         {
             GameLoaded();
@@ -71,19 +81,19 @@ public class GameManager : MonoBehaviour
     public void GameLoaded()
     {
         GameStartStopSO.GameStartStop(true);
+        _isPlaying = true;
         NewRound();
     }
 
     public void NewRound()
     {
-        RoundStartStopSo.RoundStartStop(true);
         isTimeOver = false;
-        isPlaying = true;
+        RoundStartStopSo.RoundStartStop(true, Player.AvailableOptions);
     }
 
     private void RoundTimeOver()
     {
-        // 防止用户在倒计时前操作从而触发两次行为
+        // 防止用户在倒计时前操作执行两次函数
         if (isTimeOver) return;
         isTimeOver = true;
         RoundSettle();
@@ -93,7 +103,6 @@ public class GameManager : MonoBehaviour
     {
         Player.GetCurrentStatus();
         RoundStartStopSo.RoundStartStop(false);
-        isPlaying = false;
 
         // NewRound();
     }

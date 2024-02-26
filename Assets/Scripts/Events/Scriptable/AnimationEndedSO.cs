@@ -10,6 +10,6 @@ public class AnimationEndedSO : ScriptableObject
 
     public void AnimationEnded()
     {
-        OnAnimationEnded?.Invoke();
+         OnAnimationEnded?.Invoke();
     }
 }

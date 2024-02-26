@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -36,13 +37,14 @@ public class Countdown : MonoBehaviour
 
     private void Awake()
     {
-        TextMeshPro.text = ((int)(RoundCountTime - timer)).ToString() + "S";
+        TextMeshPro.text = (int)RoundCountTime + "S";
         textColor = TextMeshPro.color;
     }
 
     private void OnEnable()
     {
         RoundStartStopSO.OnRoundStartStop += OnRoundStartStop;
+        Init();
     }
 
     private void OnDisable()
@@ -50,13 +52,11 @@ public class Countdown : MonoBehaviour
         RoundStartStopSO.OnRoundStartStop -= OnRoundStartStop;
     }
 
-    private void OnRoundStartStop(bool isStart)
+    private void OnRoundStartStop(bool isStart, [CanBeNull] Dictionary<OperatorOption, bool> dictionary)
     {
         if (isStart)
         {
-            isPlaying = true;
-            isTimeOver = false;
-            TextInit();
+            Init();
         }
         else
         {
@@ -64,8 +64,11 @@ public class Countdown : MonoBehaviour
         }
     }
 
-    void TextInit()
+    void Init()
     {
+        isPlaying = true;
+        isTimeOver = false;
+        timer = 0;
         TextMeshPro.text = (int)RoundCountTime + "S";
         TextMeshPro.color = textColor;
     }

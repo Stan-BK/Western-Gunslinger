@@ -1,17 +1,19 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// 控制枪支动画行为
 public class Gun : Instance
 {
     public bool isShoot;
     public ParticleSystem particleSystem;
     public Animator GunAnimation;
-    public RoundStartStopSO RoundStartStopSO;
     public AnimationEndedSO AnimationEndedSO;
-
+    public UIAnimationEndedSO UIAnimationEndedSO; // 枪支动画开始于UI动画结束之后
+    
     #region 生命周期函数
     
     void Update()
@@ -25,20 +27,20 @@ public class Gun : Instance
 
     private void OnEnable()
     {
-        RoundStartStopSO.OnRoundStartStop += OnRoundStartStop;
+        UIAnimationEndedSO.OnUIAnimationEnded += OnUIAnimationEnded;
     }
 
     private void OnDisable()
     {
-        RoundStartStopSO.OnRoundStartStop -= OnRoundStartStop;
+        UIAnimationEndedSO.OnUIAnimationEnded -= OnUIAnimationEnded;
     }
 
     #endregion
 
     #region 事件函数
-    private void OnRoundStartStop(bool isStart)
+    private void OnUIAnimationEnded()
     {
-        if (!isStart)
+        if (GameManager.Instance.isPlaying)
             TriggerStatusCallBack();
     }
 

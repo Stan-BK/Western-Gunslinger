@@ -1,22 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    public GameObject Gaming;
-    public GameObject Menu;
-    public Player Player;
-    public RoundStartStopSO RoundStartStopSo;
+    [Header("控制UI")]
+    public GameObject GamingUI;
+    public GameObject MenuUI;
+    public GameObject RoundUI;
+    [Header("事件对象")]
+    public RoundStartStopSO RoundStartStopSO;
     public GameStartStopSO GameStartStopSO;
+    public UIAnimationEndedSO UIAnimationEndedSO;
 
+    public bool isUIAnimationEnded = false;
     [SerializeField]private List<GameObject> GamingOptionUI;
     private Dictionary<OperatorOption, GameObject> GamingOptionUIDic = new Dictionary<OperatorOption, GameObject>();
+    private Dictionary<OperatorOption, bool> AvailableOptions = new Dictionary<OperatorOption, bool>();
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         foreach (var ui in GamingOptionUI)
         {
             OperatorOption optionType = ui.GetComponent<OperationUI>().GetOperationType();
@@ -26,12 +33,12 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable()
     {
-        RoundStartStopSo.OnRoundStartStop += OnRoundStartStop;
+        RoundStartStopSO.OnRoundStartStop += OnRoundStartStop;
         GameStartStopSO.OnGameStartStop += OnGameStartStop;
     }
     private void OnDisable()
     {
-        RoundStartStopSo.OnRoundStartStop -= OnRoundStartStop;
+        RoundStartStopSO.OnRoundStartStop -= OnRoundStartStop;
         GameStartStopSO.OnGameStartStop -= OnGameStartStop;
     }
 
@@ -43,21 +50,28 @@ public class UIManager : MonoBehaviour
             ShowMenuUI();
     }
 
-    private void OnRoundStartStop(bool isStart)
+    private void OnRoundStartStop(bool isStart, [CanBeNull] Dictionary<OperatorOption, bool> dictionary)
     {
-        GamingOptionFilter();
+        if (isStart)
+        {
+            isUIAnimationEnded = false;
+            AvailableOptions = dictionary;
+            RoundUI.SetActive(true);
+            GamingOptionFilter();
+        }
     }
 
     public void ShowGamingUI()
     {
-        Menu.SetActive(false);
-        Gaming.SetActive(true);
+        MenuUI.SetActive(false);
+        GamingUI.SetActive(true);
+        RoundUI.SetActive(true); // 防止首次进入游戏时，回合选项UI被UIAnimationEnded事件关闭
     }
 
     public void ShowMenuUI()
     {
-        Menu.SetActive(true);
-        Gaming.SetActive(false);
+        MenuUI.SetActive(true);
+        GamingUI.SetActive(false);
     }
 
     public void GamingOptionFilter()
@@ -67,7 +81,16 @@ public class UIManager : MonoBehaviour
             var key = Enum.Parse<OperatorOption>(Operator);
             GameObject ui;
             GamingOptionUIDic.TryGetValue(key, out ui);
-            ui?.SetActive(Player.AvailableOptions[key]);
+            ui?.SetActive(AvailableOptions[key]);
         }
+    }
+
+    public void UIAnimationEnded()
+    {
+        // 防止多次通知
+        if (isUIAnimationEnded) return;
+        isUIAnimationEnded = true;
+        RoundUI.SetActive(false);
+        UIAnimationEndedSO.UIAnimationEnded();
     }
 }
