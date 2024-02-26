@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -11,6 +12,7 @@ public class UIManager : Singleton<UIManager>
     public GameObject GamingUI;
     public GameObject MenuUI;
     public GameObject RoundUI;
+    public TMP_Text BulletUI;
     [Header("事件对象")]
     public RoundStartStopSO RoundStartStopSO;
     public GameStartStopSO GameStartStopSO;
@@ -21,6 +23,8 @@ public class UIManager : Singleton<UIManager>
     private Dictionary<OperatorOption, GameObject> GamingOptionUIDic = new Dictionary<OperatorOption, GameObject>();
     private Dictionary<OperatorOption, bool> AvailableOptions = new Dictionary<OperatorOption, bool>();
 
+    #region 生命周期函数
+    
     protected override void Awake()
     {
         base.Awake();
@@ -42,6 +46,10 @@ public class UIManager : Singleton<UIManager>
         GameStartStopSO.OnGameStartStop -= OnGameStartStop;
     }
 
+    #endregion
+
+    #region 事件函数
+
     private void OnGameStartStop(bool isStart)
     {
         if (isStart)
@@ -50,16 +58,36 @@ public class UIManager : Singleton<UIManager>
             ShowMenuUI();
     }
 
-    private void OnRoundStartStop(bool isStart, [CanBeNull] Dictionary<OperatorOption, bool> dictionary)
+    private void OnRoundStartStop(bool isStart, [CanBeNull] Dictionary<OperatorOption, bool> dictionary, IInformation playerInformation)
     {
         if (isStart)
         {
             isUIAnimationEnded = false;
             AvailableOptions = dictionary;
             RoundUI.SetActive(true);
+            
             GamingOptionFilter();
         }
+        else
+        {
+            var currentBullet = playerInformation.GetLoadedBullets();
+            BulletUI.text = currentBullet.ToString();
+        }
     }
+    
+    public void UIAnimationEnded()
+    {
+        // 防止多次通知
+        if (isUIAnimationEnded) return;
+        
+        isUIAnimationEnded = true;
+        RoundUI.SetActive(false);
+        UIAnimationEndedSO.UIAnimationEnded();
+    }
+
+    #endregion
+    
+    
 
     public void ShowGamingUI()
     {
@@ -85,12 +113,4 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void UIAnimationEnded()
-    {
-        // 防止多次通知
-        if (isUIAnimationEnded) return;
-        isUIAnimationEnded = true;
-        RoundUI.SetActive(false);
-        UIAnimationEndedSO.UIAnimationEnded();
-    }
 }

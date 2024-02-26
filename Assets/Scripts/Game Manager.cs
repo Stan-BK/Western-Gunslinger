@@ -20,7 +20,8 @@ public class GameManager : Singleton<GameManager>
     private bool _isPlaying = false;
     private bool isFirstPlay = true;
     private bool isTimeOver = false;
-
+    private IInformation PlayerInformation;
+    
     public bool isPlaying
     {
         get => _isPlaying;
@@ -32,6 +33,8 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         Countdown.RoundCountTime = RoundCountTime;
+        
+        PlayerInformation = Player.GetPlayerInfo();
     }
 
     private void OnEnable()
@@ -101,8 +104,7 @@ public class GameManager : Singleton<GameManager>
     
     public void RoundSettle()
     {
-        Player.GetCurrentStatus();
-        RoundStartStopSo.RoundStartStop(false);
+        RoundStartStopSo.RoundStartStop(false, PlayerInformation: Player.GetPlayerInfo());
 
         // NewRound();
     }

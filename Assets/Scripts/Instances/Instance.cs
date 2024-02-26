@@ -14,5 +14,7 @@ public abstract class Instance: MonoBehaviour
     protected abstract void Defend();
     protected abstract void Load();
 
+    protected abstract void UltimateShoot();
+
     protected abstract void SwitchStatus(OperatorOption option);
 }

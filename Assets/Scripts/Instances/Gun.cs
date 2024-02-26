@@ -58,12 +58,14 @@ public class Gun : Instance
         SwitchStatus(option);     
     }
     
+    protected override void UltimateShoot()
+    {
+        GunAnimation.SetTrigger("Ultimate_Shoot");
+    }
+    
     protected override void Shoot()
     {
-        if (currentStatus == OperatorOption.ULTIMATE_SHOOT)
-            GunAnimation.SetTrigger("Ultimate_Shoot");
-        else
-            GunAnimation.SetTrigger("Shoot");
+        GunAnimation.SetTrigger("Shoot");
     }
 
     protected override void Defend()
@@ -75,7 +77,8 @@ public class Gun : Instance
     {
         GunAnimation.SetTrigger("Load");
     }
-    
+
+
     void FireParticle()
     {
         particleSystem.Play();   
@@ -96,7 +99,7 @@ public class Gun : Instance
         {
             case OperatorOption.LOAD : Load(); break;
             case OperatorOption.SHOOT: Shoot(); break;
-            case OperatorOption.ULTIMATE_SHOOT: Shoot(); break;
+            case OperatorOption.ULTIMATE_SHOOT: UltimateShoot(); break;
         }
     }
 

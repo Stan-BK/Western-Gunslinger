@@ -52,7 +52,7 @@ public class Countdown : MonoBehaviour
         RoundStartStopSO.OnRoundStartStop -= OnRoundStartStop;
     }
 
-    private void OnRoundStartStop(bool isStart, [CanBeNull] Dictionary<OperatorOption, bool> dictionary)
+    private void OnRoundStartStop(bool isStart, [CanBeNull] Dictionary<OperatorOption, bool> dictionary, IInformation arg2)
     {
         if (isStart)
         {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-public class Player: Instance
+public class Player: Instance, IInformation
 {
     public PlayerInputControl InputControl;
     public Gun Gun;
@@ -64,26 +64,31 @@ public class Player: Instance
             case OperatorOption.LOAD : Load(); break;
             case OperatorOption.DEFEND: Defend(); break;
             case OperatorOption.SHOOT: Shoot(); break;
+            case OperatorOption.ULTIMATE_SHOOT: UltimateShoot(); break;
         }        
         
         OnOperationSelected?.Invoke();
     }
 
+    protected override void UltimateShoot()
+    {
+        Gun.Operator(OperatorOption.ULTIMATE_SHOOT);
+        SwitchStatus(OperatorOption.ULTIMATE_SHOOT);
+        
+        loadedBullets = 0;
+        
+        AvailableOptions[OperatorOption.ULTIMATE_SHOOT] = false;
+        AvailableOptions[OperatorOption.SHOOT] = false;
+    }
+
     protected override void Shoot()
     {
+        Gun.Operator(OperatorOption.SHOOT);
         SwitchStatus(OperatorOption.SHOOT);
         
-        if (loadedBullets == ultimateBulletCount)
-        {
-            loadedBullets = 0;
-            Gun.Operator(OperatorOption.ULTIMATE_SHOOT);
-        }
-        else
-        {
-            loadedBullets -= 1;
-            Gun.Operator(OperatorOption.SHOOT);
-        }
+        loadedBullets -= 1;
         
+        AvailableOptions[OperatorOption.ULTIMATE_SHOOT] = false;
         if (loadedBullets == 0)
         {
             AvailableOptions[OperatorOption.SHOOT] = false;
@@ -99,9 +104,11 @@ public class Player: Instance
     {
         Gun.Operator(OperatorOption.LOAD);
         SwitchStatus(OperatorOption.LOAD);
+        AvailableOptions[OperatorOption.SHOOT] = true;
         loadedBullets += 1;
+        if (loadedBullets == ultimateBulletCount)
+            AvailableOptions[OperatorOption.ULTIMATE_SHOOT] = true;
     }
-
 
     #endregion
 
@@ -109,19 +116,29 @@ public class Player: Instance
 
     public void Init()
     {
-        loadedBullets = 0;
         isDead = false;
         foreach (var Operator in Enum.GetNames(typeof(OperatorOption)))
         {
             AvailableOptions.Add(Enum.Parse<OperatorOption>(Operator), true);
         }
 
+        AvailableOptions[OperatorOption.ULTIMATE_SHOOT] = false;
         AvailableOptions[OperatorOption.SHOOT] = false;
     }
     
     public OperatorOption GetCurrentStatus()
     {
         return currentStatus;
+    }
+
+    public int GetLoadedBullets()
+    {
+        return loadedBullets;
+    }
+
+    public IInformation GetPlayerInfo()
+    {
+        return this;
     }
 
     protected override void SwitchStatus(OperatorOption option)
