@@ -58,7 +58,10 @@ public class Gun : Instance
     
     protected override void Shoot()
     {
-        GunAnimation.SetTrigger("Shoot");
+        if (currentStatus == OperatorOption.ULTIMATE_SHOOT)
+            GunAnimation.SetTrigger("Ultimate_Shoot");
+        else
+            GunAnimation.SetTrigger("Shoot");
     }
 
     protected override void Defend()
@@ -91,6 +94,7 @@ public class Gun : Instance
         {
             case OperatorOption.LOAD : Load(); break;
             case OperatorOption.SHOOT: Shoot(); break;
+            case OperatorOption.ULTIMATE_SHOOT: Shoot(); break;
         }
     }
 

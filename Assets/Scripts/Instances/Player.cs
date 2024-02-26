@@ -71,16 +71,17 @@ public class Player: Instance
 
     protected override void Shoot()
     {
-        Gun.Operator(OperatorOption.SHOOT);
         SwitchStatus(OperatorOption.SHOOT);
         
         if (loadedBullets == ultimateBulletCount)
         {
             loadedBullets = 0;
+            Gun.Operator(OperatorOption.ULTIMATE_SHOOT);
         }
         else
         {
             loadedBullets -= 1;
+            Gun.Operator(OperatorOption.SHOOT);
         }
         
         if (loadedBullets == 0)
