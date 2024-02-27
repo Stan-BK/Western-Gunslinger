@@ -97,6 +97,7 @@ public class Player: Instance, IInformation
 
     protected override void Defend()
     {
+        Gun.Operator(OperatorOption.DEFEND);
         SwitchStatus(OperatorOption.DEFEND);
     }
 

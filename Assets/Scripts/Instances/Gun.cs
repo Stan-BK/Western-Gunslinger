@@ -70,7 +70,7 @@ public class Gun : Instance
 
     protected override void Defend()
     {
-        //
+        GunAnimation.SetTrigger("Defend");
     }
 
     protected override void Load()
@@ -99,6 +99,7 @@ public class Gun : Instance
         {
             case OperatorOption.LOAD : Load(); break;
             case OperatorOption.SHOOT: Shoot(); break;
+            case OperatorOption.DEFEND: Defend(); break;
             case OperatorOption.ULTIMATE_SHOOT: UltimateShoot(); break;
         }
     }

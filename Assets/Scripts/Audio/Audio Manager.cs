@@ -45,6 +45,7 @@ public class AudioManager : MonoBehaviour
             case OperatorOption.LOAD: AudioSource.clip = LoadClip; break;
             case OperatorOption.SHOOT: AudioSource.clip = ShootClip; break;
             case OperatorOption.ULTIMATE_SHOOT: AudioSource.clip = UltimateShootClip; break;
+            case OperatorOption.DEFEND: AudioSource.clip = null; break;
         }
     }
 
