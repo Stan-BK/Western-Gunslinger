@@ -416,6 +416,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 147487332}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &147487333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -954,8 +966,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 586.71, y: 727.5}
+  m_AnchoredPosition: {x: 0, y: -74.45}
+  m_SizeDelta: {x: 586.71, y: 1029.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &770687866
 MonoBehaviour:
@@ -1339,8 +1351,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 293.355, y: -85.51666}
-  m_SizeDelta: {x: 586.71, y: 171.03333}
+  m_AnchoredPosition: {x: 293.355, y: -88.535}
+  m_SizeDelta: {x: 586.71, y: 177.06999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &802460480
 MonoBehaviour:
@@ -1507,6 +1519,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 802460483}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &802460484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1527,7 +1551,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ultimate_Shoot
+  m_text: Ultimate Shoot
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c71792ee5a89f7d41bb8090f017f7a6f, type: 2}
   m_sharedMaterial: {fileID: 5461014724373629414, guid: c71792ee5a89f7d41bb8090f017f7a6f,
@@ -1571,7 +1595,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -1980,8 +2004,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 293.355, y: -85.51666}
-  m_SizeDelta: {x: 586.71, y: 171.03333}
+  m_AnchoredPosition: {x: 293.355, y: -372.805}
+  m_SizeDelta: {x: 586.71, y: 177.06999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &915241155
 MonoBehaviour:
@@ -2158,6 +2182,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1485697461}
         m_TargetAssemblyTypeName: FadeOut, Assembly-CSharp
         m_MethodName: Fadeout
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 915241161}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2874,8 +2910,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 293.355, y: -363.75}
-  m_SizeDelta: {x: 586.71, y: 171.03333}
+  m_AnchoredPosition: {x: 293.355, y: -941.3449}
+  m_SizeDelta: {x: 586.71, y: 177.06999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1214755434
 MonoBehaviour:
@@ -3052,6 +3088,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1485697461}
         m_TargetAssemblyTypeName: FadeOut, Assembly-CSharp
         m_MethodName: Fadeout
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1214755439}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3506,8 +3554,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 293.355, y: -641.98334}
-  m_SizeDelta: {x: 586.71, y: 171.03333}
+  m_AnchoredPosition: {x: 293.355, y: -657.07495}
+  m_SizeDelta: {x: 586.71, y: 177.06999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1662814424
 MonoBehaviour:
@@ -3684,6 +3732,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1485697461}
         m_TargetAssemblyTypeName: FadeOut, Assembly-CSharp
         m_MethodName: Fadeout
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1662814429}
+        m_TargetAssemblyTypeName: UnityEngine.UI.Selectable, UnityEngine.UI
+        m_MethodName: set_interactable
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

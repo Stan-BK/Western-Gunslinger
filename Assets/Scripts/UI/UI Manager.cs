@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -23,6 +25,8 @@ public class UIManager : Singleton<UIManager>
     private Dictionary<OperatorOption, GameObject> GamingOptionUIDic = new Dictionary<OperatorOption, GameObject>();
     private Dictionary<OperatorOption, bool> AvailableOptions = new Dictionary<OperatorOption, bool>();
 
+    private List<Button> Buttons = new List<Button>();
+
     #region 生命周期函数
     
     protected override void Awake()
@@ -32,6 +36,11 @@ public class UIManager : Singleton<UIManager>
         {
             OperatorOption optionType = ui.GetComponent<OperationUI>().GetOperationType();
             GamingOptionUIDic.Add(optionType, ui);
+        }
+
+        foreach (var button in GamingUI.GetComponentsInChildren<Button>().Concat(MenuUI.GetComponentsInChildren<Button>()))
+        {
+            Buttons.Add(button);
         }
     }
 
@@ -53,7 +62,10 @@ public class UIManager : Singleton<UIManager>
     private void OnGameStartStop(bool isStart)
     {
         if (isStart)
+        {
             ShowGamingUI();
+            EnableButtonInteractive();
+        }
         else
             ShowMenuUI();
     }
@@ -67,6 +79,7 @@ public class UIManager : Singleton<UIManager>
             RoundUI.SetActive(true);
             
             GamingOptionFilter();
+            EnableButtonInteractive();
         }
         else
         {
@@ -100,6 +113,14 @@ public class UIManager : Singleton<UIManager>
     {
         MenuUI.SetActive(true);
         GamingUI.SetActive(false);
+    }
+
+    public void EnableButtonInteractive()
+    {
+        Buttons.ForEach((btn) =>
+        {
+            btn.interactable = true;
+        });
     }
 
     public void GamingOptionFilter()
