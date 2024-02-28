@@ -8,7 +8,9 @@ public class Player: Instance, IInformation
     public PlayerInputControl InputControl;
     public Gun Gun;
     public UnityAction OnOperationSelected;
-
+    public TimeOverSO TimeOverSO;
+    public bool isActive;
+    
     public Dictionary<OperatorOption, bool> AvailableOptions = new Dictionary<OperatorOption, bool>();
 
     #region 生命周期函数
@@ -26,11 +28,13 @@ public class Player: Instance, IInformation
 
     private void OnEnable()
     {
+        TimeOverSO.OnTimeOver += OnTimeOver;
         InputControl.Enable();
     }
 
     private void OnDisable()
     {
+        TimeOverSO.OnTimeOver -= OnTimeOver;
         InputControl.Disable();
     }
 
@@ -68,10 +72,16 @@ public class Player: Instance, IInformation
         }        
         
         OnOperationSelected?.Invoke();
+        isActive = true;
     }
 
     protected override void UltimateShoot()
     {
+        if (loadedBullets != ultimateBulletCount)
+        {
+            Shoot();
+            return;
+        }
         Gun.Operator(OperatorOption.ULTIMATE_SHOOT);
         SwitchStatus(OperatorOption.ULTIMATE_SHOOT);
         
@@ -83,6 +93,11 @@ public class Player: Instance, IInformation
 
     protected override void Shoot()
     {
+        if (loadedBullets == 0)
+        {
+            Load();
+            return;
+        }
         Gun.Operator(OperatorOption.SHOOT);
         SwitchStatus(OperatorOption.SHOOT);
         
@@ -117,6 +132,7 @@ public class Player: Instance, IInformation
 
     public void Init()
     {
+        isActive = true;
         isDead = false;
         foreach (var Operator in Enum.GetNames(typeof(OperatorOption)))
         {
@@ -137,6 +153,8 @@ public class Player: Instance, IInformation
         return loadedBullets;
     }
 
+    public bool isActiveSelect => isActive;
+
     public IInformation GetPlayerInfo()
     {
         return this;
@@ -147,6 +165,11 @@ public class Player: Instance, IInformation
         currentStatus = option;
     }
 
+    private void OnTimeOver()
+    {
+        isActive = false;
+        Operator(OperatorOption.ULTIMATE_SHOOT);
+    }
     #endregion
     
 }

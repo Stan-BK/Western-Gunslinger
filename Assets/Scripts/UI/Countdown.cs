@@ -11,7 +11,7 @@ public class Countdown : MonoBehaviour
     public bool isTimeOver = false;
     [HideInInspector]public float RoundCountTime;
     public RoundStartStopSO RoundStartStopSO;
-    public UnityAction TimeOver;
+    public TimeOverSO TimeOverSO;
     public TMP_Text TextMeshPro;
     private float timer = 0;
     private bool isPlaying = false;
@@ -31,6 +31,7 @@ public class Countdown : MonoBehaviour
                 timer = 0;
                 isTimeOver = true;
                 isPlaying = false;
+                TimeOverSO.TimeOver();
             }
         }
     }

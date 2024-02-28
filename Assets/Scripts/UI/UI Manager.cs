@@ -83,6 +83,12 @@ public class UIManager : Singleton<UIManager>
         {
             var currentBullet = playerInformation.GetLoadedBullets();
             BulletUI.text = currentBullet.ToString();
+
+            if (!playerInformation.isActiveSelect)
+            {
+                UIAnimationEnded();
+            }
+                // GamingButtons[playerInformation.GetCurrentStatus()].Invoke("Press", 0);
         }
     }
     

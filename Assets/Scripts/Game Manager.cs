@@ -13,8 +13,8 @@ public class GameManager : Singleton<GameManager>
     public RoundStartStopSO RoundStartStopSo;
     public GameStartStopSO GameStartStopSO;
     public AnimationEndedSO AnimationEndedSO;
-    
     public Countdown Countdown;
+    
     public float RoundCountTime;
     private float roundTimer = 0;
     private bool _isPlaying = false;
@@ -40,14 +40,12 @@ public class GameManager : Singleton<GameManager>
     private void OnEnable()
     {
         AnimationEndedSO.OnAnimationEnded += OnAnimationEnded;
-        Countdown.TimeOver += RoundTimeOver;
         Player.OnOperationSelected += OnPlayerOperationSelected;
     }
 
     private void OnDisable()
     {
         AnimationEndedSO.OnAnimationEnded -= OnAnimationEnded;
-        Countdown.TimeOver -= RoundTimeOver;
         Player.OnOperationSelected -= OnPlayerOperationSelected;
     }
     #endregion
@@ -62,7 +60,7 @@ public class GameManager : Singleton<GameManager>
 
     private void OnPlayerOperationSelected()
     {
-        RoundTimeOver();
+        OnRoundEnded();
     }
 
     #endregion
@@ -94,10 +92,8 @@ public class GameManager : Singleton<GameManager>
         RoundStartStopSo.RoundStartStop(true, Player.AvailableOptions);
     }
 
-    private void RoundTimeOver()
+    private void OnRoundEnded()
     {
-        // 防止用户在倒计时前操作执行两次函数
-        if (isTimeOver) return;
         isTimeOver = true;
         RoundSettle();
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Instance: MonoBehaviour
 {
     protected int loadedBullets;
-    protected int ultimateBulletCount = 6;
+    [SerializeField] protected int ultimateBulletCount = 6;
     protected bool isDead;
     protected OperatorOption currentStatus;
 
