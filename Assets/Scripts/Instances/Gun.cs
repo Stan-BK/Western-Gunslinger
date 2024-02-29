@@ -38,13 +38,13 @@ public class Gun : Instance
     #endregion
 
     #region 事件函数
-    private void OnUIAnimationEnded()
+    protected void OnUIAnimationEnded()
     {
         if (GameManager.Instance.isPlaying)
             TriggerStatusCallBack();
     }
 
-    public void AnimationEnded()
+    public virtual void AnimationEnded()
     {
         AnimationEndedSO.AnimationEnded();
     }
@@ -87,11 +87,6 @@ public class Gun : Instance
     #endregion
 
     #region 
-
-    protected override void SwitchStatus(OperatorOption option)
-    {
-        currentStatus = option;
-    }
 
     void TriggerStatusCallBack()
     {

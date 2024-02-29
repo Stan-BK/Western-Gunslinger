@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject Timeline;
     private TimelinePreferences timeline;
     public Player Player;
+    public AI_Enemy Enemy;
     public RoundStartStopSO RoundStartStopSo;
     public GameStartStopSO GameStartStopSO;
     public AnimationEndedSO AnimationEndedSO;
@@ -55,7 +56,7 @@ public class GameManager : Singleton<GameManager>
     // 结算动画结束
     private void OnAnimationEnded()
     {
-        NewRound(); 
+        NewRound();
     }
 
     private void OnPlayerOperationSelected()
@@ -101,7 +102,7 @@ public class GameManager : Singleton<GameManager>
     public void RoundSettle()
     {
         RoundStartStopSo.RoundStartStop(false, PlayerInformation: Player.GetPlayerInfo());
-
+        Enemy.Operator();
         // NewRound();
     }
 }

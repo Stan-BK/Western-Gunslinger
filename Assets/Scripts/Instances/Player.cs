@@ -160,11 +160,6 @@ public class Player: Instance, IInformation
         return this;
     }
 
-    protected override void SwitchStatus(OperatorOption option)
-    {
-        currentStatus = option;
-    }
-
     private void OnTimeOver()
     {
         isActive = false;
