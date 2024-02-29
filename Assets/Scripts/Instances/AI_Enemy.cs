@@ -13,6 +13,5 @@ public class AI_Enemy : Player
         int val = Random.Range(0, types.Length);
 
         base.Operator((OperatorOption)val);
-        Debug.Log(Gun.name);
     }
 }

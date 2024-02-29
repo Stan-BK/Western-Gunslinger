@@ -1,14 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Timeline.Actions;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class GameManager : Singleton<GameManager>
 {
     public GameObject Timeline;
-    private TimelinePreferences timeline;
     public Player Player;
     public AI_Enemy Enemy;
     public RoundStartStopSO RoundStartStopSo;
@@ -20,12 +19,17 @@ public class GameManager : Singleton<GameManager>
     private float roundTimer = 0;
     private bool _isPlaying = false;
     private bool isFirstPlay = true;
-    private bool isTimeOver = false;
+    private bool _isPlayerWin = false;
     private IInformation PlayerInformation;
     
     public bool isPlaying
     {
         get => _isPlaying;
+    }
+
+    public bool isPlayerWin
+    {
+        get => _isPlayerWin;
     }
 
     #region 生命周期函数
@@ -56,7 +60,10 @@ public class GameManager : Singleton<GameManager>
     // 结算动画结束
     private void OnAnimationEnded()
     {
-        NewRound();
+        SettleDown();
+        
+        if (isPlaying)
+            NewRound();
     }
 
     private void OnPlayerOperationSelected()
@@ -89,20 +96,47 @@ public class GameManager : Singleton<GameManager>
 
     public void NewRound()
     {
-        isTimeOver = false;
         RoundStartStopSo.RoundStartStop(true, Player.AvailableOptions);
     }
 
     private void OnRoundEnded()
     {
-        isTimeOver = true;
         RoundSettle();
     }
     
     public void RoundSettle()
     {
-        RoundStartStopSo.RoundStartStop(false, PlayerInformation: Player.GetPlayerInfo());
+        // 触发敌人结算
         Enemy.Operator();
-        // NewRound();
+        RoundStartStopSo.RoundStartStop(false, PlayerInformation: Player.GetPlayerInfo(), EnemyInformation: Enemy.GetPlayerInfo());
+    }
+
+    void SettleDown()
+    {
+        OperatorOption PlayerStatus = Player.GetCurrentStatus();
+        OperatorOption EnemyStatus = Enemy.GetCurrentStatus();
+
+        if (PlayerStatus == OperatorOption.LOAD)
+        {
+            if (EnemyStatus == OperatorOption.ULTIMATE_SHOOT || EnemyStatus == OperatorOption.SHOOT) GameOver(false);
+        } else if (PlayerStatus == OperatorOption.SHOOT)
+        {
+            if (EnemyStatus == OperatorOption.ULTIMATE_SHOOT) GameOver(false);
+            else if (EnemyStatus == OperatorOption.LOAD) GameOver(true);
+        } else if (PlayerStatus == OperatorOption.ULTIMATE_SHOOT)
+        {
+            if (EnemyStatus != OperatorOption.ULTIMATE_SHOOT) GameOver(true);
+        }
+        else
+        {
+            if (EnemyStatus == OperatorOption.ULTIMATE_SHOOT) GameOver(false);
+        }
+    }
+    
+    void GameOver(bool isPlayerWin)
+    {
+        _isPlayerWin = isPlayerWin;
+        _isPlaying = false;
+        GameStartStopSO.GameStartStop(false);
     }
 }

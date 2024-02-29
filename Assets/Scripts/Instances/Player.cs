@@ -9,6 +9,7 @@ public class Player: Instance, IInformation
     public Gun Gun;
     public UnityAction OnOperationSelected;
     public TimeOverSO TimeOverSO;
+    public GameStartStopSO GameStartStopSO;
     public bool isActive;
     
     public Dictionary<OperatorOption, bool> AvailableOptions = new Dictionary<OperatorOption, bool>();
@@ -17,6 +18,7 @@ public class Player: Instance, IInformation
 
     void Awake()
     {
+        InitAvailableOptions();
         Init();
         
         InputControl = new PlayerInputControl();
@@ -24,17 +26,27 @@ public class Player: Instance, IInformation
         InputControl.Player.Load.started += OnLoadBullet;
         InputControl.Player.Defend.started += OnDefend;
         InputControl.Player.Fire.started += OnShoot;
+
+        void InitAvailableOptions()
+        {
+            foreach (var Operator in Enum.GetNames(typeof(OperatorOption)))
+            {
+                AvailableOptions.Add(Enum.Parse<OperatorOption>(Operator), true);
+            }
+        }
     }
 
     private void OnEnable()
     {
         TimeOverSO.OnTimeOver += OnTimeOver;
+        GameStartStopSO.OnGameStartStop += OnGameStartStop; 
         InputControl.Enable();
     }
 
     private void OnDisable()
     {
         TimeOverSO.OnTimeOver -= OnTimeOver;
+        GameStartStopSO.OnGameStartStop -= OnGameStartStop; 
         InputControl.Disable();
     }
 
@@ -134,10 +146,7 @@ public class Player: Instance, IInformation
     {
         isActive = true;
         isDead = false;
-        foreach (var Operator in Enum.GetNames(typeof(OperatorOption)))
-        {
-            AvailableOptions.Add(Enum.Parse<OperatorOption>(Operator), true);
-        }
+        loadedBullets = 0;
 
         AvailableOptions[OperatorOption.ULTIMATE_SHOOT] = false;
         AvailableOptions[OperatorOption.SHOOT] = false;
@@ -164,6 +173,15 @@ public class Player: Instance, IInformation
     {
         isActive = false;
         Operator(OperatorOption.ULTIMATE_SHOOT);
+    }
+    
+    
+    private void OnGameStartStop(bool isStart)
+    {
+        if (isStart)
+        {
+            Init();
+        }
     }
     #endregion
     

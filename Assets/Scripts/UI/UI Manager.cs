@@ -13,7 +13,9 @@ public class UIManager : Singleton<UIManager>
     public GameObject GamingUI;
     public GameObject MenuUI;
     public GameObject RoundUI;
+    public GameObject EndedPanelUI;
     public TMP_Text BulletUI;
+    public TMP_Text GameResultUI;
     [Header("事件对象")]
     public RoundStartStopSO RoundStartStopSO;
     public GameStartStopSO GameStartStopSO;
@@ -23,7 +25,7 @@ public class UIManager : Singleton<UIManager>
     [SerializeField]private List<GameObject> GamingOptionUI;
     private Dictionary<OperatorOption, bool> AvailableOptions = new Dictionary<OperatorOption, bool>();
     private Dictionary<OperatorOption, Button> GamingButtons = new Dictionary<OperatorOption, Button>();
-    private List<Button> MenuButtons = new List<Button>();
+    private List<Button> Buttons = new List<Button>();
 
     #region 生命周期函数
     
@@ -37,9 +39,9 @@ public class UIManager : Singleton<UIManager>
             GamingButtons.Add(optionType, button);
         }
 
-        foreach (var button in MenuUI.GetComponentsInChildren<Button>())
+        foreach (var button in MenuUI.GetComponentsInChildren<Button>().Concat(EndedPanelUI.GetComponentsInChildren<Button>()))
         {
-            MenuButtons.Add(button);
+            Buttons.Add(button);
         }
     }
 
@@ -63,13 +65,17 @@ public class UIManager : Singleton<UIManager>
         if (isStart)
         {
             ShowGamingUI();
-            EnableMenuButtonInteractive();
         }
         else
-            ShowMenuUI();
+        {
+            GameResultUI.text = GameManager.Instance.isPlayerWin ? "YOU WIN!" : "YOU LOSE*";
+            ShowEndedPanel();
+            // ShowMenuUI();
+        }
+        EnableMenuButtonInteractive();
     }
 
-    private void OnRoundStartStop(bool isStart, [CanBeNull] Dictionary<OperatorOption, bool> dictionary, IInformation playerInformation)
+    private void OnRoundStartStop(bool isStart, [CanBeNull] Dictionary<OperatorOption, bool> dictionary, IInformation playerInformation, IInformation arg3)
     {
         if (isStart)
         {
@@ -108,20 +114,30 @@ public class UIManager : Singleton<UIManager>
 
     public void ShowGamingUI()
     {
+        BulletUI.text = (0).ToString();
+        
         MenuUI.SetActive(false);
         GamingUI.SetActive(true);
         RoundUI.SetActive(true); // 防止首次进入游戏时，回合选项UI被UIAnimationEnded事件关闭
+        EndedPanelUI.SetActive(false);
     }
 
     public void ShowMenuUI()
     {
         MenuUI.SetActive(true);
         GamingUI.SetActive(false);
+        EndedPanelUI.SetActive(false);
+    }
+
+    public void ShowEndedPanel()
+    {
+        GamingUI.SetActive(false);
+        EndedPanelUI.SetActive(true);
     }
 
     public void EnableMenuButtonInteractive()
     {
-        foreach (var button in MenuButtons)
+        foreach (var button in Buttons)
         {
             button.interactable = true;
         }

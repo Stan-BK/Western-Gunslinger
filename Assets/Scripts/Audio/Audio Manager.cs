@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public AudioSource AudioSource;
+    public AudioSource PlayerAudioSource;
+    public AudioSource EnemyAudioSource;
     public AudioClip LoadClip;
     public AudioClip ShootClip;
     public AudioClip UltimateShootClip;
@@ -30,27 +31,29 @@ public class AudioManager : MonoBehaviour
             PlayAudioClip();
     }
 
-    private void OnRoundStartStop(bool isStart, Dictionary<OperatorOption, bool> arg1, IInformation PlayerInfo)
+    private void OnRoundStartStop(bool isStart, Dictionary<OperatorOption, bool> arg1, IInformation PlayerInfo, IInformation EnemyInfo)
     {
         if (!isStart)
         {
-            SwitchAudioClip(PlayerInfo.GetCurrentStatus());
+            SwitchAudioClip(PlayerAudioSource, PlayerInfo.GetCurrentStatus());
+            SwitchAudioClip(EnemyAudioSource, EnemyInfo.GetCurrentStatus());
         }
     }
 
-    private void SwitchAudioClip(OperatorOption option)
+    private void SwitchAudioClip(AudioSource audioSource, OperatorOption option)
     {
         switch (option)
         {
-            case OperatorOption.LOAD: AudioSource.clip = LoadClip; break;
-            case OperatorOption.SHOOT: AudioSource.clip = ShootClip; break;
-            case OperatorOption.ULTIMATE_SHOOT: AudioSource.clip = UltimateShootClip; break;
-            case OperatorOption.DEFEND: AudioSource.clip = null; break;
+            case OperatorOption.LOAD: audioSource.clip = LoadClip; break;
+            case OperatorOption.SHOOT: audioSource.clip = ShootClip; break;
+            case OperatorOption.ULTIMATE_SHOOT: audioSource.clip = UltimateShootClip; break;
+            case OperatorOption.DEFEND: audioSource.clip = null; break;
         }
     }
 
     void PlayAudioClip()
     {
-        AudioSource.Play();
+        PlayerAudioSource.Play();
+        EnemyAudioSource.Play();
     }
 }
