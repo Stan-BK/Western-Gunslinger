@@ -78,10 +78,21 @@ public class Gun : Instance
         GunAnimation.SetTrigger("Load");
     }
 
-
     void FireParticle()
     {
         particleSystem.Play();   
+    }
+
+    public void Dead()
+    {
+        GunAnimation.applyRootMotion = true;
+        GunAnimation.SetBool("isDead", true);
+    }
+
+    public void Recover()
+    {
+        GunAnimation.applyRootMotion = false;
+        GunAnimation.SetBool("isDead", false);
     }
 
     #endregion

@@ -14,4 +14,21 @@ public class AI_Enemy : Player
 
         base.Operator((OperatorOption)val);
     }
+
+    protected override void OnGameStartStop(bool isStart)
+    {
+        if (isStart)
+        {
+            Init();
+            Gun.Recover();
+        }
+        else
+        {
+            if (GameManager.Instance.isPlayerWin)
+            {
+                isDead = true;
+                Gun.Dead();
+            }
+        }
+    }
 }

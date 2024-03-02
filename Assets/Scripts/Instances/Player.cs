@@ -176,11 +176,19 @@ public class Player: Instance, IInformation
     }
     
     
-    private void OnGameStartStop(bool isStart)
+    protected virtual void OnGameStartStop(bool isStart)
     {
         if (isStart)
         {
             Init();
+            Gun.Recover();
+        }
+        else
+        {
+            if (!GameManager.Instance.isPlayerWin)
+            {
+                Gun.Dead();
+            }
         }
     }
     #endregion
