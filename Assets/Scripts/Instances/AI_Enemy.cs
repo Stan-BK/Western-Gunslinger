@@ -6,6 +6,25 @@ using Random = UnityEngine.Random;
 
 public class AI_Enemy : Player
 {
+    public Animator EnemyAnimator;
+    public UIAnimationEndedSO UIAnimationEndedSO; // 枪支动画开始于UI动画结束之后
+    
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        UIAnimationEndedSO.OnUIAnimationEnded += OnUIAnimationEnded;
+    }
+
+    protected virtual void OnDisable()
+    {
+        base.OnDisable();
+        UIAnimationEndedSO.OnUIAnimationEnded -= OnUIAnimationEnded;
+    }
+
+    protected override void OnTimeOver()
+    {
+        //
+    }
 
     public override void Operator(OperatorOption option = OperatorOption.LOAD)
     {
@@ -20,6 +39,7 @@ public class AI_Enemy : Player
         if (isStart)
         {
             Init();
+            EnemyAnimator.SetBool("isDead", isDead);
             Gun.Recover();
         }
         else
@@ -27,8 +47,30 @@ public class AI_Enemy : Player
             if (GameManager.Instance.isPlayerWin)
             {
                 isDead = true;
+                EnemyAnimator.SetBool("isDead", isDead);
                 Gun.Dead();
             }
+            else
+            {
+                TriggerStatusCallBack();
+            }
+        }
+    }
+    
+    protected void OnUIAnimationEnded()
+    {
+        if (GameManager.Instance.isPlaying)
+            TriggerStatusCallBack();
+    }
+    
+    void TriggerStatusCallBack()
+    {
+        switch (currentStatus)
+        {
+            case OperatorOption.LOAD : EnemyAnimator.SetTrigger("Load"); break;
+            case OperatorOption.SHOOT: EnemyAnimator.SetTrigger("Shoot"); break;
+            case OperatorOption.DEFEND: EnemyAnimator.SetTrigger("Defend"); break;
+            case OperatorOption.ULTIMATE_SHOOT: EnemyAnimator.SetTrigger("Shoot"); break;
         }
     }
 }

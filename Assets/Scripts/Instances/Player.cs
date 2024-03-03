@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
@@ -10,7 +11,7 @@ public class Player: Instance, IInformation
     public UnityAction OnOperationSelected;
     public TimeOverSO TimeOverSO;
     public GameStartStopSO GameStartStopSO;
-    public bool isActive;
+    private bool isActive;
     
     public Dictionary<OperatorOption, bool> AvailableOptions = new Dictionary<OperatorOption, bool>();
 
@@ -36,14 +37,14 @@ public class Player: Instance, IInformation
         }
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         TimeOverSO.OnTimeOver += OnTimeOver;
         GameStartStopSO.OnGameStartStop += OnGameStartStop; 
         InputControl.Enable();
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         TimeOverSO.OnTimeOver -= OnTimeOver;
         GameStartStopSO.OnGameStartStop -= OnGameStartStop; 
@@ -89,7 +90,7 @@ public class Player: Instance, IInformation
 
     protected override void UltimateShoot()
     {
-        if (loadedBullets != ultimateBulletCount)
+        if (loadedBullets <= ultimateBulletCount)
         {
             Shoot();
             return;
@@ -169,7 +170,7 @@ public class Player: Instance, IInformation
         return this;
     }
 
-    private void OnTimeOver()
+    protected virtual void OnTimeOver()
     {
         isActive = false;
         Operator(OperatorOption.ULTIMATE_SHOOT);
