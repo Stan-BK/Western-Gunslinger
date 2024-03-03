@@ -100,8 +100,10 @@ public class Player: Instance, IInformation
         
         loadedBullets -= ultimateBulletCount;
         
-        AvailableOptions[OperatorOption.ULTIMATE_SHOOT] = false;
-        AvailableOptions[OperatorOption.SHOOT] = false;
+        if (loadedBullets < ultimateBulletCount)
+            AvailableOptions[OperatorOption.ULTIMATE_SHOOT] = false;
+        if (loadedBullets == 0)
+            AvailableOptions[OperatorOption.SHOOT] = false;
     }
 
     protected override void Shoot()
