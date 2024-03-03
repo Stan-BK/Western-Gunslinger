@@ -98,7 +98,7 @@ public class Player: Instance, IInformation
         Gun.Operator(OperatorOption.ULTIMATE_SHOOT);
         SwitchStatus(OperatorOption.ULTIMATE_SHOOT);
         
-        loadedBullets = 0;
+        loadedBullets -= ultimateBulletCount;
         
         AvailableOptions[OperatorOption.ULTIMATE_SHOOT] = false;
         AvailableOptions[OperatorOption.SHOOT] = false;
