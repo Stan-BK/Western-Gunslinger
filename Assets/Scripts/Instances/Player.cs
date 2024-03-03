@@ -90,7 +90,7 @@ public class Player: Instance, IInformation
 
     protected override void UltimateShoot()
     {
-        if (loadedBullets <= ultimateBulletCount)
+        if (loadedBullets < ultimateBulletCount)
         {
             Shoot();
             return;
