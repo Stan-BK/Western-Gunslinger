@@ -1,0 +1,47 @@
+﻿<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:27:16:7971</timestamp>
+  <msgtype>MsgWXLogLaunch</msgtype>
+  <content>[The WXLogger is launched!]</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.Options.OptionsConfig..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:27:16:8073</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+OptionsConfig,-option=mirrorImage
+-dataDir=D:/Selfmade/Western Gunslinger/TextToolDatas
+-inPath=D:/Selfmade/Western Gunslinger/TextToolDatas\firstBundleTextures\png\267\EscToExit_Text.2e1ee8b4.png
+-outPath=D:/Selfmade/Western Gunslinger/TextToolDatas\mirrorImageTemp\temp2283.png
+-execRoot=D:/Selfmade/Western Gunslinger/Assets\WX-WASM-SDK-V2\Editor\TextureEditor\Node
+</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:27:16:8083</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string
+UnityBridgeHandler - SetDataDir,D:/Selfmade/Western Gunslinger/TextToolDatas\temp</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:27:16:8112</timestamp>
+  <msgtype>MsgString</msgtype>
+  <content>WXMirrorImageExec</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>

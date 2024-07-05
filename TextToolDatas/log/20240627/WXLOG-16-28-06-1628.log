@@ -1,0 +1,192 @@
+﻿<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6792</timestamp>
+  <msgtype>MsgWXLogLaunch</msgtype>
+  <content>[The WXLogger is launched!]</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.Options.OptionsConfig..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6885</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+OptionsConfig,-option=text
+-do=assetListInfo
+-sourceDir=D:/Selfmade/Western Gunslinger/Publish\webgl
+-dataDir=D:/Selfmade/Western Gunslinger/TextToolDatas
+</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6895</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string
+UnityBridgeHandler - SetDataDir,D:/Selfmade/Western Gunslinger/TextToolDatas\temp</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6924</timestamp>
+  <msgtype>MsgString</msgtype>
+  <content>WXTextureMinExec</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6959</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|string
+IgnoreHandler,D:/Selfmade/Western Gunslinger/TextToolDatas\bundlerIgnore.txt</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.AppCmdExec.WXTextureMinExec..ctor; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App.process; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Application.App..ctor; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6979</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec files,D:\Selfmade\Western Gunslinger\Publish\webgl\6b493b664a6754cd.webgl.wasm.code.unityweb.wasm.br
+D:\Selfmade\Western Gunslinger\Publish\webgl\80c243a3183d4741.webgl.data.unityweb.bin.br
+D:\Selfmade\Western Gunslinger\Publish\webgl\Build\webgl.data
+D:\Selfmade\Western Gunslinger\Publish\webgl\Build\webgl.framework.js
+D:\Selfmade\Western Gunslinger\Publish\webgl\Build\webgl.loader.js
+D:\Selfmade\Western Gunslinger\Publish\webgl\Build\webgl.symbols.json
+D:\Selfmade\Western Gunslinger\Publish\webgl\Build\webgl.wasm
+D:\Selfmade\Western Gunslinger\Publish\webgl\index.html
+D:\Selfmade\Western Gunslinger\Publish\webgl\StreamingAssets\aa\AddressablesLink\link.xml
+D:\Selfmade\Western Gunslinger\Publish\webgl\StreamingAssets\aa\catalog.json
+D:\Selfmade\Western Gunslinger\Publish\webgl\StreamingAssets\aa\settings.json
+D:\Selfmade\Western Gunslinger\Publish\webgl\StreamingAssets\aa\WebGL\90534eb10c1c3c7cb04658642f643e9b_unitybuiltinshaders_c43e8b2d02631a9dae8f878c6d0989ac.bundle
+D:\Selfmade\Western Gunslinger\Publish\webgl\StreamingAssets\aa\WebGL\defaultlocalgroup_assets_all_b0e9c9ff9dbe8748e02e36b457c2bbc3.bundle
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\favicon.ico
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\fullscreen-button.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\MemoryProfiler.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\progress-bar-empty-dark.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\progress-bar-empty-light.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\progress-bar-full-dark.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\progress-bar-full-light.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\style.css
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\unity-logo-dark.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\unity-logo-light.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\webgl-logo.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\webmemd-icon.png
+</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App.process; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6979</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec filesAB,</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App.process; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6998</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec copyFiles,D:\Selfmade\Western Gunslinger\Publish\webgl\6b493b664a6754cd.webgl.wasm.code.unityweb.wasm.br
+D:\Selfmade\Western Gunslinger\Publish\webgl\80c243a3183d4741.webgl.data.unityweb.bin.br
+D:\Selfmade\Western Gunslinger\Publish\webgl\Build\webgl.data
+D:\Selfmade\Western Gunslinger\Publish\webgl\Build\webgl.framework.js
+D:\Selfmade\Western Gunslinger\Publish\webgl\Build\webgl.loader.js
+D:\Selfmade\Western Gunslinger\Publish\webgl\Build\webgl.symbols.json
+D:\Selfmade\Western Gunslinger\Publish\webgl\Build\webgl.wasm
+D:\Selfmade\Western Gunslinger\Publish\webgl\index.html
+D:\Selfmade\Western Gunslinger\Publish\webgl\StreamingAssets\aa\AddressablesLink\link.xml
+D:\Selfmade\Western Gunslinger\Publish\webgl\StreamingAssets\aa\catalog.json
+D:\Selfmade\Western Gunslinger\Publish\webgl\StreamingAssets\aa\settings.json
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\favicon.ico
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\fullscreen-button.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\MemoryProfiler.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\progress-bar-empty-dark.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\progress-bar-empty-light.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\progress-bar-full-dark.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\progress-bar-full-light.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\style.css
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\unity-logo-dark.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\unity-logo-light.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\webgl-logo.png
+D:\Selfmade\Western Gunslinger\Publish\webgl\TemplateData\webmemd-icon.png
+</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App.process; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6998</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec assetBundles,D:\Selfmade\Western Gunslinger\Publish\webgl\StreamingAssets\aa\WebGL\90534eb10c1c3c7cb04658642f643e9b_unitybuiltinshaders_c43e8b2d02631a9dae8f878c6d0989ac.bundle
+D:\Selfmade\Western Gunslinger\Publish\webgl\StreamingAssets\aa\WebGL\defaultlocalgroup_assets_all_b0e9c9ff9dbe8748e02e36b457c2bbc3.bundle
+</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App.process; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6998</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec firstBundles,</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App.process; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6998</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec copyFiles2,</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App.process; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
+<wxlog>
+  <threadId>#main</threadId>
+  <timestamp>16:28:06:6998</timestamp>
+  <msgtype>MsgMixture</msgtype>
+  <content>string|String[]
+WXTextureMinExec assetBundles2,</content>
+  <stackFrames>
+[CALL STACK][0]: Method:WXTextureTools.Application.App.process; File:.0
+[CALL STACK][1]: Method:WXTextureTools.Application.App..ctor; File:.0
+[CALL STACK][2]: Method:WXTextureTools.Program.Main; File:.0
+</stackFrames>
+</wxlog>
