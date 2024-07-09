@@ -32,6 +32,7 @@ public class Player: Instance, IInformation
         {
             foreach (var Operator in Enum.GetNames(typeof(OperatorOption)))
             {
+                if (Operator == OperatorOption.PLACEHOLDER.ToString()) continue;
                 AvailableOptions.Add(Enum.Parse<OperatorOption>(Operator), true);
             }
         }

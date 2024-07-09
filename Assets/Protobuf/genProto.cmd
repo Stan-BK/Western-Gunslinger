@@ -1,0 +1,1 @@
+protoc --proto_path=./ --csharp_out=../Scripts/NetWork/Message message.proto

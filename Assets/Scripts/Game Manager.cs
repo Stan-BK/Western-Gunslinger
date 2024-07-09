@@ -2,8 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Network;
 using UnityEngine;
 using UnityEngine.Serialization;
+using WeChatWASM;
+using Debug = UnityEngine.Debug;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -20,6 +23,7 @@ public class GameManager : Singleton<GameManager>
     private bool _isPlaying = false;
     private bool isFirstPlay = true;
     private bool _isPlayerWin = false;
+    private bool isNeedGuidance = false;
     private IInformation PlayerInformation;
     
     public bool isPlaying
@@ -36,9 +40,10 @@ public class GameManager : Singleton<GameManager>
 
     protected override void Awake()
     {
+        WX.SetPreferredFramesPerSecond(24);
         base.Awake();
         Countdown.RoundCountTime = RoundCountTime;
-        
+
         PlayerInformation = Player.GetPlayerInfo();
     }
 
@@ -73,6 +78,12 @@ public class GameManager : Singleton<GameManager>
 
     #endregion
 
+    public void MultiPlay()
+    {
+        NetClient.Instance.Init("127.0.0.1", 8888);
+        NetClient.Instance.Connect();
+    }
+
     public void StartGame()
     {
         if (isFirstPlay)
@@ -92,10 +103,18 @@ public class GameManager : Singleton<GameManager>
         GameStartStopSO.GameStartStop(true);
         _isPlaying = true;
         NewRound();
+        isNeedGuidance = PlayerPrefs.GetInt("isNewPlayer") == 0;
+        if (isNeedGuidance)
+        {
+            StartCoroutine(GuidanceManager.Instance.StartGuidance());
+            PlayGuidance();
+        }
     }
 
     public void NewRound()
     {
+        if (isNeedGuidance)
+            PlayGuidance();
         RoundStartStopSo.RoundStartStop(true, Player.AvailableOptions);
     }
 
@@ -138,5 +157,11 @@ public class GameManager : Singleton<GameManager>
         _isPlayerWin = isPlayerWin;
         _isPlaying = false;
         GameStartStopSO.GameStartStop(false);
+    }
+
+    public void PlayGuidance()
+    {
+        GuidanceManager.Instance.WaitForGuidance.PlayerNextGuidance();
+
     }
 }

@@ -1,5 +1,6 @@
 public enum OperatorOption
 {
+    PLACEHOLDER,
     SHOOT,
     DEFEND,
     LOAD,

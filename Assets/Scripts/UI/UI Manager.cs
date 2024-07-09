@@ -34,7 +34,7 @@ public class UIManager : Singleton<UIManager>
         base.Awake();
         foreach (var ui in GamingOptionUI)
         {
-            OperatorOption optionType = ui.GetComponent<OperationUI>().GetOperationType();
+            OperatorOption optionType = ui.GetComponent<ClickHandler>().Option;
             var button = ui.GetComponent<Button>();
             GamingButtons.Add(optionType, button);
         }

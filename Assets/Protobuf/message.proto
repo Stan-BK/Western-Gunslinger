@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package SocketNet.Message;
+
+option csharp_namespace = "SocketNet.Message";
+
+message MyMessage{
+    string query = 1;
+}
