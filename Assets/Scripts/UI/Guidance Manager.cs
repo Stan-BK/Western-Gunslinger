@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using WeChatWASM;
 
 public class GuidanceManager : Singleton<GuidanceManager>
 {
@@ -44,6 +45,7 @@ public class GuidanceManager : Singleton<GuidanceManager>
 
     public void ExitGuidance()
     {
+        if (_enumerator is null) return;
         Destroy(currentGuidanceGO);
         if (_enumerator.Current.AutoPlay && !isGuideEnded)
         {
@@ -66,7 +68,11 @@ public class GuidanceManager : Singleton<GuidanceManager>
             WaitForGuidance = new WaitGuidance();
         }
         isGuideEnded = true;
+#if UNITY_EDITOR
         UnityEngine.PlayerPrefs.SetInt("isNewPlayer", 1);
+#else
+        WX.StorageSetIntSync("isNewPlayer", 1);
+#endif
     }
 
     public class WaitGuidance : IEnumerator

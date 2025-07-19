@@ -26,6 +26,7 @@ public class FadeOut : MonoBehaviour
     {
         if (!gameObject.activeSelf) return;
         animator.SetTrigger("FadeOut");
+        return;
         if (isNeedParticle)
         {
             if (Particle == null)

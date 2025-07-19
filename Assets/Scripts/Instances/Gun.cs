@@ -25,12 +25,12 @@ public class Gun : Instance
         }
     }
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         UIAnimationEndedSO.OnUIAnimationEnded += OnUIAnimationEnded;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         UIAnimationEndedSO.OnUIAnimationEnded -= OnUIAnimationEnded;
     }
@@ -38,7 +38,7 @@ public class Gun : Instance
     #endregion
 
     #region 事件函数
-    protected void OnUIAnimationEnded()
+    protected virtual void OnUIAnimationEnded()
     {
         if (GameManager.Instance.isPlaying)
             TriggerStatusCallBack();
@@ -99,7 +99,7 @@ public class Gun : Instance
 
     #region 
 
-    void TriggerStatusCallBack()
+    protected virtual void TriggerStatusCallBack()
     {
         switch (currentStatus)
         {

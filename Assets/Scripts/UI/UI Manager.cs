@@ -105,7 +105,8 @@ public class UIManager : Singleton<UIManager>
         
         isUIAnimationEnded = true;
         RoundUI.SetActive(false);
-        UIAnimationEndedSO.UIAnimationEnded();
+        if (!(GameManager.Instance.isMultiPlayer))
+            UIAnimationEndedSO.UIAnimationEnded();
     }
 
     #endregion

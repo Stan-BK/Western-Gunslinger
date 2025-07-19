@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using Network;
 using UnityEngine;
 using UnityEngine.Serialization;
 using WeChatWASM;
@@ -16,6 +15,7 @@ public class GameManager : Singleton<GameManager>
     public RoundStartStopSO RoundStartStopSo;
     public GameStartStopSO GameStartStopSO;
     public AnimationEndedSO AnimationEndedSO;
+    public UIAnimationEndedSO UIAnimationEndedSO;
     public Countdown Countdown;
     
     public float RoundCountTime;
@@ -23,8 +23,16 @@ public class GameManager : Singleton<GameManager>
     private bool _isPlaying = false;
     private bool isFirstPlay = true;
     private bool _isPlayerWin = false;
+    private bool _isMultiPlayer = false;
     private bool isNeedGuidance = false;
+    private int waitPlayerCount = 2;
     private IInformation PlayerInformation;
+
+    public bool isMultiPlayer
+    {
+        get => _isMultiPlayer;
+        set => _isMultiPlayer = value;
+    }
     
     public bool isPlaying
     {
@@ -65,7 +73,8 @@ public class GameManager : Singleton<GameManager>
     // 结算动画结束
     private void OnAnimationEnded()
     {
-        SettleDown();
+        if (!isMultiPlayer)
+            SettleDown();
         
         if (isPlaying)
             NewRound();
@@ -73,15 +82,19 @@ public class GameManager : Singleton<GameManager>
 
     private void OnPlayerOperationSelected()
     {
-        OnRoundEnded();
+        if (isMultiPlayer)
+        {
+            NetClient.Instance.SendOperation(Player.GetCurrentStatus);
+            ClickHandler.SetInteractiveOnly(null);
+        } else
+            RoundSettle();
     }
 
     #endregion
 
     public void MultiPlay()
     {
-        NetClient.Instance.Init("127.0.0.1", 8888);
-        NetClient.Instance.Connect();
+        
     }
 
     public void StartGame()
@@ -103,7 +116,11 @@ public class GameManager : Singleton<GameManager>
         GameStartStopSO.GameStartStop(true);
         _isPlaying = true;
         NewRound();
+#if UNITY_EDITOR  
         isNeedGuidance = PlayerPrefs.GetInt("isNewPlayer") == 0;
+#else
+        isNeedGuidance =  WX.StorageGetIntSync("isNewPlayer", 0) == 0;
+#endif
         if (isNeedGuidance)
         {
             StartCoroutine(GuidanceManager.Instance.StartGuidance());
@@ -113,27 +130,29 @@ public class GameManager : Singleton<GameManager>
 
     public void NewRound()
     {
+        ClickHandler.InteractiveAll();
         if (isNeedGuidance)
             PlayGuidance();
         RoundStartStopSo.RoundStartStop(true, Player.AvailableOptions);
     }
-
-    private void OnRoundEnded()
-    {
-        RoundSettle();
-    }
     
     public void RoundSettle()
     {
-        // 触发敌人结算
-        Enemy.Operator();
+        if (!isMultiPlayer)
+            // 触发敌人结算
+            Enemy.Operator(null);
+        else 
+            UIAnimationEndedSO.UIAnimationEnded();
         RoundStartStopSo.RoundStartStop(false, PlayerInformation: Player.GetPlayerInfo(), EnemyInformation: Enemy.GetPlayerInfo());
     }
 
     void SettleDown()
     {
-        OperatorOption PlayerStatus = Player.GetCurrentStatus();
-        OperatorOption EnemyStatus = Enemy.GetCurrentStatus();
+        // 多人游戏交由服务端判断
+        if (isMultiPlayer) return;
+        
+        OperatorOption PlayerStatus = Player.GetCurrentStatus;
+        OperatorOption EnemyStatus = Enemy.GetCurrentStatus;
 
         if (PlayerStatus == OperatorOption.LOAD)
         {
@@ -152,11 +171,12 @@ public class GameManager : Singleton<GameManager>
         }
     }
     
-    void GameOver(bool isPlayerWin)
+    public void GameOver(bool isPlayerWin)
     {
         _isPlayerWin = isPlayerWin;
         _isPlaying = false;
         GameStartStopSO.GameStartStop(false);
+        isMultiPlayer = false;
     }
 
     public void PlayGuidance()

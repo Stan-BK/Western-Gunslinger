@@ -79,12 +79,13 @@ public class Player: Instance, IInformation
     {
         switch (option)
         {
+            case OperatorOption.PLACEHOLDER:
             case OperatorOption.LOAD : Load(); break;
             case OperatorOption.DEFEND: Defend(); break;
             case OperatorOption.SHOOT: Shoot(); break;
             case OperatorOption.ULTIMATE_SHOOT: UltimateShoot(); break;
-        }        
-        
+        }
+
         OnOperationSelected?.Invoke();
         isActive = true;
     }
@@ -156,10 +157,7 @@ public class Player: Instance, IInformation
         AvailableOptions[OperatorOption.SHOOT] = false;
     }
     
-    public OperatorOption GetCurrentStatus()
-    {
-        return currentStatus;
-    }
+    public OperatorOption GetCurrentStatus => currentStatus;
 
     public int GetLoadedBullets()
     {

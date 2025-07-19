@@ -1,6 +1,6 @@
 public interface IInformation
 {
     bool isActiveSelect { get; }
-    OperatorOption GetCurrentStatus();
+    OperatorOption GetCurrentStatus { get; }
     int GetLoadedBullets();
 }

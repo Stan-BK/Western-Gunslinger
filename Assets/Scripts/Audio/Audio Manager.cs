@@ -35,8 +35,8 @@ public class AudioManager : MonoBehaviour
     {
         if (!isStart)
         {
-            SwitchAudioClip(PlayerAudioSource, PlayerInfo.GetCurrentStatus());
-            SwitchAudioClip(EnemyAudioSource, EnemyInfo.GetCurrentStatus());
+            SwitchAudioClip(PlayerAudioSource, PlayerInfo.GetCurrentStatus);
+            SwitchAudioClip(EnemyAudioSource, EnemyInfo.GetCurrentStatus);
         }
     }
 

@@ -26,12 +26,16 @@ public class AI_Enemy : Player
         //
     }
 
-    public override void Operator(OperatorOption option = OperatorOption.LOAD)
+    public new void Operator(OperatorOption? option)
     {
-        var types = Enum.GetValues(typeof(OperatorOption));
-        int val = Random.Range(1, types.Length);
+        if (option is null)
+        {
+            var types = Enum.GetValues(typeof(OperatorOption));
+            int val = Random.Range(1, types.Length);
+            option = (OperatorOption)val;
+        }
 
-        base.Operator((OperatorOption)val);
+        base.Operator((OperatorOption)option);
     }
 
     protected override void OnGameStartStop(bool isStart)
